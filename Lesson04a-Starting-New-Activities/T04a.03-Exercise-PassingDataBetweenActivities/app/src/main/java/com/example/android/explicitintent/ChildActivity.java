@@ -15,9 +15,12 @@
  */
 package com.example.android.explicitintent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class ChildActivity extends AppCompatActivity {
 
@@ -34,10 +37,13 @@ public class ChildActivity extends AppCompatActivity {
 
         // TODO (3) Use the getIntent method to store the Intent that started this Activity in a variable
 
+        Intent mIntent = getIntent();
         // TODO (4) Create an if statement to check if this Intent has the extra we passed from MainActivity
-
+        if (mIntent.hasExtra(Intent.EXTRA_TEXT)) {
             // TODO (5) If the Intent contains the correct extra, retrieve the text
-
+            String text = mIntent.getStringExtra(Intent.EXTRA_TEXT);
             // TODO (6) If the Intent contains the correct extra, use it to set the TextView text
+            mDisplayText.setText(text);
+        }
     }
 }
