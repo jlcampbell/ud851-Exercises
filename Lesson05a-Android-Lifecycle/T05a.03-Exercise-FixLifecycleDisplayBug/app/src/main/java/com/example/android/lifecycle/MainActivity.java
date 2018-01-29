@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO (1) Declare and instantiate a static ArrayList of Strings called mLifecycleCallbacks
 
+
     /**
      * Called when the activity is first created. This is where you should do all of your normal
      * static set up: create views, bind data to lists, etc.
