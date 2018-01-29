@@ -15,8 +15,11 @@
  */
 package com.example.android.asynctaskloader;
 
+import android.app.LoaderManager;
+import android.content.AsyncTaskLoader;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,8 +33,9 @@ import com.example.android.asynctaskloader.utilities.NetworkUtils;
 import java.io.IOException;
 import java.net.URL;
 
-// TODO (1) implement LoaderManager.LoaderCallbacks<String> on MainActivity
-public class MainActivity extends AppCompatActivity {
+// c (1) implement LoaderManager.LoaderCallbacks<String> on MainActivity
+public class MainActivity extends AppCompatActivity
+    implements android.support.v4.app.LoaderManager.LoaderCallbacks<String> {
 
     /* A constant to save and restore the URL that is being displayed */
     private static final String SEARCH_QUERY_URL_EXTRA = "query";
@@ -40,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     /* A constant to save and restore the JSON that is being displayed */
     private static final String SEARCH_RESULTS_RAW_JSON = "results";
 
-    // TODO (2) Create a constant int to uniquely identify your loader. Call it GITHUB_SEARCH_LOADER
+    // c (2) Create a constant int to uniquely identify your loader. Call it GITHUB_SEARCH_LOADER
+    private static final int GITHUB_SEARCH_LOADER = 513;
 
     private EditText mSearchBoxEditText;
 
@@ -132,14 +137,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // TODO (3) Override onCreateLoader
+
+    @Override
+    public Loader<String> onCreateLoader(int id, final Bundle args) {
+        return new android.support.v4.content.AsyncTaskLoader<String>(this) {
+            @Override
+            public void onStartLoading(){
+                if (args == null){
+                    return;
+                }
+                mLoadingIndicator.setVisibility(View.VISIBLE);
+            }
+            @Override
+            public String loadInBackground() {
+                return null;
+            }
+
+        }
+    }
+
+    @Override
+    public void onLoadFinished(Loader<String> loader, String data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<String> loader) {
+
+    }
     // Within onCreateLoader
-        // TODO (4) Return a new AsyncTaskLoader<String> as an anonymous inner class with this as the constructor's parameter
-            // TODO (5) Override onStartLoading
+        // c (4) Return a new AsyncTaskLoader<String> as an anonymous inner class with this as the constructor's parameter
+            // c (5) Override onStartLoading
                 // Within onStartLoading
 
-                // TODO (6) If args is null, return.
+                // c (6) If args is null, return.
 
-                // TODO (7) Show the loading indicator
+                // c (7) Show the loading indicator
 
                 // TODO (8) Force a load
                 // END - onStartLoading
