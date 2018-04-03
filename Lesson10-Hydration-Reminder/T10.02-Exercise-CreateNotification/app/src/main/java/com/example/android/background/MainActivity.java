@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     // TODO (15) Create a method called testNotification that triggers NotificationUtils' remindUserBecauseCharging
-    public void testNotification(){
-        NotificationUtils.remindUserBecauseCharging(this);
+    public void testNotification(View view){
+         NotificationUtils.remindUserBecauseCharging(this);
     }
 
     @Override

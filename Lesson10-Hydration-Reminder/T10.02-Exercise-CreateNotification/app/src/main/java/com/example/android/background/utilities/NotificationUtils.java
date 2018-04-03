@@ -26,7 +26,7 @@ public class NotificationUtils {
     private static final int PENDING_ID = 712;
     private static final String WATER_REMINDER_NOTIFICATION_CHANNEL_ID = "string id";
     // c (7) Create a method called remindUserBecauseCharging which takes a Context.
-    public void remindUserBecauseCharging (Context context){
+    public static void remindUserBecauseCharging (Context context){
         NotificationManager notificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -80,7 +80,7 @@ public class NotificationUtils {
         // Pass in a unique ID of your choosing for the notification and notificationBuilder.build()
 
 
-    public PendingIntent contentIntent(Context context){
+    public static PendingIntent contentIntent(Context context){
         Intent mainActivityIntent = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, PENDING_ID, mainActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         return pendingIntent;

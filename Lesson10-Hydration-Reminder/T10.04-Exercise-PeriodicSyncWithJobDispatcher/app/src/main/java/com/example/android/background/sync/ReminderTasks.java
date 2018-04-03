@@ -25,11 +25,15 @@ public class ReminderTasks {
     public static final String ACTION_INCREMENT_WATER_COUNT = "increment-water-count";
     public static final String ACTION_DISMISS_NOTIFICATION = "dismiss-notification";
 
+    public static final String ACTION_CHARGING_NOTIFICATION = "increment-charging-reminder-count";
+
     public static void executeTask(Context context, String action) {
         if (ACTION_INCREMENT_WATER_COUNT.equals(action)) {
             incrementWaterCount(context);
         } else if (ACTION_DISMISS_NOTIFICATION.equals(action)) {
             NotificationUtils.clearAllNotifications(context);
+        } else if (ACTION_CHARGING_NOTIFICATION.equals(action)) {
+            chargingReminderNotification(context);
         }
     }
 
@@ -38,7 +42,13 @@ public class ReminderTasks {
         NotificationUtils.clearAllNotifications(context);
     }
 
-    // TODO (2) Create an additional task for issuing a charging reminder notification.
+    public static void chargingReminderNotification(Context context) {
+        //increment the charging reminder count
+        PreferenceUtilities.incrementChargingReminderCount(context);
+        //create a notification
+        NotificationUtils.remindUserBecauseCharging(context);
+    }
+    // C (2) Create an additional task for issuing a charging reminder notification.
     // This should be done in a similar way to how you have an action for incrementingWaterCount
     // and dismissing notifications. This task should both create a notification AND
     // increment the charging reminder count (hint: there is a method for this in PreferenceUtilities)
